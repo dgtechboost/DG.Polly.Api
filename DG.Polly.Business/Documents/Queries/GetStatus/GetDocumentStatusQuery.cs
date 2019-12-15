@@ -14,7 +14,7 @@ namespace DG.Polly.Business.Documents.Queries.GetStatus
             _documentsService = documentsService;
         }
 
-        public async Task<DocumentStatusContract> ExecuteAsync(int id)
+        public async Task<DocumentStatusContract> ExecuteAsync(string id)
         {
             return await _documentsService.GetDocumentStatusAsync(id);
         }

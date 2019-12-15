@@ -5,6 +5,6 @@ namespace DG.Polly.Business.Documents.Queries.GetStatus
 {
     public interface IGetDocumentStatusQuery
     {
-        Task<DocumentStatusContract> ExecuteAsync(int id);
+        Task<DocumentStatusContract> ExecuteAsync(string id);
     }
 }

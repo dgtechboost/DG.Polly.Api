@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DG.Polly.Contracts\DG.Polly.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

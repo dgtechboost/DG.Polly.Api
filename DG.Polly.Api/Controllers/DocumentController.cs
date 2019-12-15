@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DG.Polly.Business.Documents.Queries.Get;
+using DG.Polly.Business.Documents.Queries.GetMetadata;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DG.Polly.Api.Controllers
@@ -24,7 +26,7 @@ namespace DG.Polly.Api.Controllers
         /// </summary>
         /// <returns>Document</returns>
         [HttpGet("document/{id}")]
-        public async Task<IActionResult> GetDocument(int id)
+        public async Task<IActionResult> GetDocument(string id)
         {
             try
             {
@@ -43,7 +45,7 @@ namespace DG.Polly.Api.Controllers
         /// </summary>
         /// <returns>Document metadata</returns>
         [HttpGet("document/{id}")]
-        public async Task<IActionResult> GetDocumentMetadata(int id)
+        public async Task<IActionResult> GetDocumentMetadata(string id)
         {
             try
             {
