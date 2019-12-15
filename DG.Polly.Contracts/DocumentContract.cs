@@ -6,5 +6,8 @@ namespace DG.Polly.Contracts
     {
         [JsonProperty("messageId")]
         public string MessageId { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }

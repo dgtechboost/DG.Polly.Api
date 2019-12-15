@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.AutoMoq;
 using DG.Polly.Business.Documents.Queries.GetStatus;
@@ -27,27 +28,21 @@ namespace DG.Polly.Business.Tests.Documents
         public async Task ShouldGetDocumentStatus()
         {
             // Arrange
+
             var messageId = "12345";
-
-            var document = _fixture
-                .Build<DocumentStatusContract>()
-                .With(x=>x.MessageId, messageId)
-                .Create();
-
-            _mockDocumentsService
-                .Setup(x => x.GetDocumentStatusAsync(messageId))
-                .ReturnsAsync(document);
 
             var query = _fixture.Create<GetDocumentStatusQuery>();
 
+            var cancellationToken = _fixture.Create<CancellationTokenSource>();
+
+            cancellationToken.Cancel(true);
+
             // Act
 
-            var result = await query.ExecuteAsync(messageId);
+            var result = await query.ExecuteAsync(messageId, cancellationToken.Token);
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(result.MessageId, document.MessageId);
-            Assert.AreEqual(result.Status, document.Status);
         }
     }
 }

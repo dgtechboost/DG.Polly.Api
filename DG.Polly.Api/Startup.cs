@@ -1,4 +1,7 @@
 ﻿using System;
+using DG.Polly.Business.Documents.Queries.Get;
+using DG.Polly.Business.Documents.Queries.GetMetadata;
+using DG.Polly.Business.Documents.Queries.GetStatus;
 using DG.Polly.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,8 +24,14 @@ namespace DG.Polly.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IGetDocumentQuery, GetDocumentQuery>();
+            services.AddScoped<IGetDocumentMetadateQuery, GetDocumentMetadateQuery>();
+            services.AddScoped<IGetDocumentStatusQuery, GetDocumentStatusQuery>();
+
             services.AddRefitClient<IDocumentsService>()
                     .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://ow-interview-exercise-dev.azurewebsites.net/documents"));
+
+            services.AddHttpClient();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

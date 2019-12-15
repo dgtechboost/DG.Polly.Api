@@ -6,7 +6,7 @@ namespace DG.Polly.Business.Documents.Queries.GetMetadata
     public class GetDocumentMetadateQuery
         : IGetDocumentMetadateQuery
     {
-        private IDocumentsService _documentsService;
+        private readonly IDocumentsService _documentsService;
 
         public GetDocumentMetadateQuery(
             IDocumentsService documentsService)
